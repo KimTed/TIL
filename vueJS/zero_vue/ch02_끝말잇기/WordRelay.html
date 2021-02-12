@@ -9,16 +9,61 @@
     </head>
     <body>
         <div id="root">
-        </div>
+            <word-relay></word-relay>
+            <br />
+            <word-relay></word-relay>
+            <br />
+            <word-relay></word-relay>
+        </div> 
     </body>
 
 <script>
+    Vue.component(
+        'wordRelay',
+        {
+            template: `
+            <div>
+                <div> {{firstWord}}</div>
+                <form v-on:submit="onSubmit">
+                    <input type="text" v-model="word" ref="answer">
+                    <button type="submit">입력</button>
+                </form>
+                <div>{{resultMsg}}</div>
+            </div>
+            `,
+            data() {
+                return {
+                    firstWord: "김태수",
+                    word: '',
+                    result: '',
+                    methodCnt: 0,
+                    computeCnt: 0
+                }
+            },
+            methods: {
+            onSubmit(e) {
+                    console.log(`this.methodCnt: ${this.methodCnt++}`)
+                    e.preventDefault();
+                    this.result = this.firstWord.substr(-1) === this.word.substr(0,1);
+                    this.word = "";
+                    this.$refs.answer.focus();
+                }
+            },
+            computed: {
+                resultMsg() {
+                    console.log(`this.computeCnt: ${this.computeCnt++}`)
+                    if (this.result === "") return "";
+                    return  this.result ? "정답입니다!!" : "땡~!" ;
+                }
+            }
+        }
+    )
+</script>
+<script>
     const app = new Vue({
         el: "#root",
-        data: {
-        },
-        methods: {
-        }
+        
+        
     });
 </script>
 </html>
