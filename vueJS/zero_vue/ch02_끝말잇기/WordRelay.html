@@ -9,11 +9,11 @@
     </head>
     <body>
         <div id="root">
-            <word-relay></word-relay>
+            <word-relay start-word="기차"></word-relay>
             <br />
-            <word-relay></word-relay>
+            <word-relay start-word="초밥"></word-relay>
             <br />
-            <word-relay></word-relay>
+            <word-relay start-word="부자"></word-relay>
         </div> 
     </body>
 
@@ -31,9 +31,10 @@
                 <div>{{resultMsg}}</div>
             </div>
             `,
+            props: ['startWord'],
             data() {
                 return {
-                    firstWord: "김태수",
+                    firstWord: this.startWord,
                     word: '',
                     result: '',
                     methodCnt: 0,
