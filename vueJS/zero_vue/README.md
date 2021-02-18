@@ -21,3 +21,10 @@
     * node에서 제공하는 내장 모듈(?)
     * __dirname: 현재 위치 (pwd)
       * ex) ```path.join(__dirname, 'dist')```
+  ---
+  * webpack 설정
+    * 큰틀
+      * entry(시작점) -> output(끝점) -> module(처리 도중 이상한걸 발견하면 사용) -> plugins(후처리)
+  ---
+  * @
+    * vue에서 ```v-on:```는 ```@```로 변경이 가능

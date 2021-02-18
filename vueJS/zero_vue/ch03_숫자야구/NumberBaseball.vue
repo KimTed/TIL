@@ -1,11 +1,17 @@
 <template>
     <div>
         <h1>{{result}}</h1>
-        <form v-on:submit="onSubmitForm">
-            <input maxlength="4" ref="answer" v-model="value" />
+        <form @submit.prevent="onSubmitForm">
+            <input maxlength="4" minlength="4" ref="answer" v-model="value" />
             <button>입력</button>
         </form>
-        <div>시도: {{}}</div>
+        <div>시도: {{tries.length}}</div>
+        <ul>
+            <li v-for="ele in tries">
+                <div> {{ele.try}} </div>
+                <div> {{ele.result}} </div>
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -13,13 +19,20 @@
 export default {
     data() {
         return {
+            tries:[],
             value: '',
-            answer: ''
+            result: ''
         }
     },
     methods:{
         onSubmitForm(e) {
-            e.preventDefault();
+            // e.preventDefault(); // 해당 태그에  @submit.prevent 때문
+            this.tries.push( 
+                { try: this.value,                
+                  result: '홈런'
+                });
+            this.value = '';
+            this.$refs.answer.focus();
         }
     },
 }
